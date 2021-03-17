@@ -1,20 +1,20 @@
-// // Frequency Counter
-// // NESTED LOOPS SOLUTION
-// function sameLoops(arr1, arr2) {
-//   if (arr1.length !== arr2.length) {
-//     return false;
-//   }
-//   for (let i = 0; i < arr1.length; i++) {
-//     let correctIndex = arr2.indexOf(arr1[i] ** 2);
-//     if (correctIndex === -1) {
-//       return false;
-//     }
-//     arr2.splice(correctIndex, 1);
-//   }
-//   return true;
-// }
+// ******* FREQUENCY COUNTERS *******
+// NESTED LOOPS SOLUTION
+function sameLoops(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    let correctIndex = arr2.indexOf(arr1[i] ** 2);
+    if (correctIndex === -1) {
+      return false;
+    }
+    arr2.splice(correctIndex, 1);
+  }
+  return true;
+}
 
-// console.log(sameLoops([1, 2, 2], [1, 4, 4]));
+sameLoops([1, 2, 2], [1, 4, 4]);
 
 // REFACTORED
 function same(arr1, arr2) {
@@ -50,7 +50,7 @@ function same(arr1, arr2) {
   return true;
 }
 
-console.log(same([1, 2, 3], [1, 4, 9]));
+same([1, 2, 3], [1, 4, 9]);
 
 // Write a function called sameFrequency. Given 2 positive integers, find out if the two numbers have the same frequency of digits.
 // Sample input:
@@ -78,5 +78,32 @@ function sameFrequency(num1, num2) {
     if (countNum1[key] !== countNum2[key]) return false;
   }
 
+  return true;
+}
+
+// Anagram function: check if a string is an anagram of another string
+
+function validAnagram(first, second) {
+  if (first.length !== second.length) {
+    return false;
+  }
+
+  const lookup = {};
+
+  for (let i = 0; i < first.length; i++) {
+    let letter = first[i];
+    //if letter exists, increment, othrwise set to 1
+    lookup[letter] ? (lookup[letter] += 1) : (lookup[letter] = 1);
+  }
+
+  for (let i = 0; i < second.length; i++) {
+    let letter = second[i];
+    // can't find letter, or letter is 0 then it's not an anagram
+    if (!lookup[letter]) {
+      return false;
+    } else {
+      lookup[letter] -= 1;
+    }
+  }
   return true;
 }
