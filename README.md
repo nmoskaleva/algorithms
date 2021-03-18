@@ -232,3 +232,50 @@ function sameLoops(arr1, arr2) {
   return true;
 }
 ```
+
+#### MULTIPLE POINTERS
+
+Creating pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a certain condition.
+Very efficient for solving problems with minimal space complexity as well.
+
+EXAMPLE 1
+Write a function called `sumZero` which accepts sorted(!) array of integers. The function should find the first pair where the sum is 0. Return an array that includes both values that sum to zero or undefined if a pair doesn't exist.
+
+`sumZero([-3,-2,-1,0,1,2,3]); // [-3,3]`
+
+\*loop solution – line 111;
+
+``````function sumZero(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (sum === 0) {
+      return [arr[left], arr[right]];
+    } else if (sum > 0) {
+      right--;
+    } else {
+      left++;
+    }
+  }
+}```
+
+EXAMPLE 2
+Implement a function called `countUniqueValues`, which accepts a sorted array, and counts the unique values in the array.
+````function countUniqueValues(arr) {
+  if (arr.length === 0) return 0;
+  let i = 0;
+  for (let j = 1; j < arr.length; j++) {
+    if (arr[i] !== arr[j]) {
+      i++;
+      arr[i] = arr[j];
+    }
+  }
+  return i + 1;
+}`````
+
+EXAMPLE 3
+Are there duplicates?
+Implement a function called `areThereDuplicates`, which accepts a variable number of arguments, and checks whether there are any duplicates among the arguments passed in.
+``````
